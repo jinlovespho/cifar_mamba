@@ -64,6 +64,7 @@ if __name__ =='__main__':
     model = initialize.load_model(args)
     tot_params = sum(i.numel() for i in model.parameters())
     print(f'TOT PARAMS: {tot_params/1e6:.2f}M')
+    args.tot_params=tot_params
 
     # init optimizer, scheduler
     optim = torch.optim.Adam(params=model.parameters(), lr=args.lr, weight_decay=args.weight_decay)

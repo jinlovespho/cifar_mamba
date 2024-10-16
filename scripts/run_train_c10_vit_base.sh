@@ -17,7 +17,7 @@ TRAIN_ARGS="
 "
 
 TRAIN_MODEL_ARGS="
-    --model mamba
+    --model vit_base
 "
 
 # ============================ EVAL ARGS ============================ 
@@ -29,7 +29,7 @@ EVAL_ARGS="
 SAVE_ARGS="
     --log_tool wandb
     --wandb_proj_name cifar10_mamba
-    --wandb_exp_name c10_mamba_lr3e4_bs128_epoch100_baseline
+    --wandb_exp_name c10_vit_base_lr3e4_bs128_epoch100_baseline
     --save_path ./
 "
 

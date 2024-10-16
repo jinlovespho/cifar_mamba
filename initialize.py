@@ -93,8 +93,84 @@ def load_model(args):
         model = ImgClassifier(patch_size, img_size, n_channels, embed_dim, n_layers, dropout, n_class)
         model = model.to(device)
 
-    elif args.model == 'vit_small':
-        pass 
+    elif args.model == 'vit_tiny': # # 5.8M
+        args.num_layers=12
+        args.hidden=192
+        args.mlp_hidden=768
+        args.head=3
+        args.patch=8    # 32/4=8, patch_size=4
+        args.dropout=0.1
+        args.is_cls_token=True
+        from model.vit.vit_orig import ViT_Orig
+        
+        model = ViT_Orig(   
+                args.in_c, 
+                args.num_classes, 
+                img_size=args.size, 
+                patch=args.patch, 
+                dropout=args.dropout, 
+                mlp_hidden=args.mlp_hidden,
+                num_layers=args.num_layers,
+                hidden=args.hidden,
+                head=args.head,
+                is_cls_token=args.is_cls_token,
+                args=args
+                )
+        model=model.to(device)
+
+    
+    elif args.model == 'vit_small': # 22.2M
+        args.num_layers=12
+        args.hidden=384
+        args.mlp_hidden=1536
+        args.head=6
+        args.patch=8    # 32/4=8, patch_size=4
+        args.dropout=0.1
+        args.is_cls_token=True
+        from model.vit.vit_orig import ViT_Orig
+        
+        model = ViT_Orig(   
+                args.in_c, 
+                args.num_classes, 
+                img_size=args.size, 
+                patch=args.patch, 
+                dropout=args.dropout, 
+                mlp_hidden=args.mlp_hidden,
+                num_layers=args.num_layers,
+                hidden=args.hidden,
+                head=args.head,
+                is_cls_token=args.is_cls_token,
+                args=args
+                )
+        model=model.to(device)
+
+    elif args.model == 'vit_base': # 86 M
+        args.num_layers=12
+        args.hidden=768
+        args.mlp_hidden=3072
+        args.head=12
+        args.patch=8    # 32/4=8, patch_size=4
+        args.dropout=0.1
+        args.is_cls_token=True
+        from model.vit.vit_orig import ViT_Orig
+        
+        model = ViT_Orig(   
+                args.in_c, 
+                args.num_classes, 
+                img_size=args.size, 
+                patch=args.patch, 
+                dropout=args.dropout, 
+                mlp_hidden=args.mlp_hidden,
+                num_layers=args.num_layers,
+                hidden=args.hidden,
+                head=args.head,
+                is_cls_token=args.is_cls_token,
+                args=args
+                )
+        model=model.to(device)
+        
+
+
     
     return model
 
